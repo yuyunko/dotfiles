@@ -73,26 +73,20 @@ if filereadable(expand(s:infofile))
 endif
 unlet s:infofile
 
-" initiallize size
-if s:is_windows
-    set lines=130
-    set columns=120
-    " Alt + ï½¡¦
-    nnoremap [Space]r :<C-u>simalt ~r<CR>
-    nnoremap [Space]x :<C-u>simalt ~x<CR>
-endif
-
-" Maximize
-"au MyAutoCmd GUIEnter * simalt ~x
-"au MyAutoCmd BufEnter * macaction performZoom:
-
 if s:is_darwin
     if has("gui_running")
         set fuoptions=maxvert,maxhorz
         "au MyAutoCmd GUIEnter * set fullscreen
+        nnoremap [Space]r :<C-u>set nofullscreen<CR>
+        nnoremap [Space]x :<C-u>set fullscreen<CR>
     endif
 elseif s:is_windows
     if has("gui_running")
+        " initiallize size
+        set lines=130
+        set columns=120
+        nnoremap [Space]r :<C-u>simalt ~r<CR>
+        nnoremap [Space]x :<C-u>simalt ~x<CR>
         "au MyAutoCmd GUIEnter * simalt ~x
         "au MyAutoCmd FileType vimfiler simalt ~x
         "au MyAutoCmd BufLeave,BufHidden,BufDelete,VimLeave vimfiler simalt ~r<CR>
